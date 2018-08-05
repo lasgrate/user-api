@@ -1,3 +1,14 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+user_create:
+    path: /user
+    controller: App\Controller\User\Base::create
+    methods: [POST]
+
+user_session_create:
+    path: /user/session
+    controller: App\Controller\User\Session::create
+    methods: [POST]
+
+user_tracking_create:
+    path: /user/tracking
+    controller: App\Controller\User\Tracking::create
+    methods: [POST]
