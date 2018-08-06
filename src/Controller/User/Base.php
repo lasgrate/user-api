@@ -5,7 +5,7 @@ namespace App\Controller\User;
 use App\Controller\Base as BaseController;
 use App\Services\User\Create as CreateUserService;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Base extends BaseController
 {
@@ -17,6 +17,6 @@ class Base extends BaseController
             return $createUserService->run($entry);
         });
 
-        return new Response(json_encode($result));
+        return new JsonResponse($result);
     }
 }

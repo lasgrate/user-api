@@ -6,7 +6,7 @@ use App\Controller\Base as BaseController;
 use App\Services\User\Tracking\Create as CreateUserTrackingService;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Tracking extends BaseController
@@ -15,8 +15,7 @@ class Tracking extends BaseController
         Request $request,
         SessionInterface $session,
         CreateUserTrackingService $createUserTrackingService
-    )
-    {
+    ) {
         $entry = $request->request->all();
         $entry['id_user'] = $session->get('id_user') ?: $request->cookies->get('id_user', '');
 
@@ -24,7 +23,7 @@ class Tracking extends BaseController
             return $createUserTrackingService->run($entry);
         });
 
-        $response = new Response(json_encode(['status' => $result['status']]));
+        $response = new JsonResponse(['status' => $result['status']]);
 
         if ($result['status'] && !$result['is_authorize']) {
             $response->headers->setCookie(new Cookie('id_user', $result['id_user']));

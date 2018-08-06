@@ -29,6 +29,10 @@ class Base
         $this->logger = $logger;
         $this->filesystem = new Filesystem();
         $this->storageDirPath = __DIR__ . '/../../var/storage/';
+
+        if (!$this->filesystem->exists($this->storageDirPath)) {
+            $this->filesystem->mkdir($this->storageDirPath);
+        }
     }
 
     protected function insertIntoFile($file, $data)

@@ -5,7 +5,7 @@ namespace App\Controller\User;
 use App\Controller\Base as BaseController;
 use App\Services\User\Authorize as CreateUserAuthorizeService;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Session extends BaseController
@@ -25,6 +25,6 @@ class Session extends BaseController
             $session->set('id_user', $result['id_user']);
         }
 
-        return new Response(json_encode($result));
+        return new JsonResponse(['status' => 1]);
     }
 }
