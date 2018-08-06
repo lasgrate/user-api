@@ -25,6 +25,6 @@ class Session extends BaseController
             $session->set('id_user', $result['id_user']);
         }
 
-        return new JsonResponse(['status' => 1]);
+        return new JsonResponse(['status' => $result['status']]);
     }
 }
