@@ -43,7 +43,7 @@ abstract class Base
         return $result;
     }
 
-    abstract protected function validate($params): array;
+    abstract protected function validate(array $params): array;
 
-    abstract protected function execute($validated): array;
+    abstract protected function execute(array $validated): array;
 }

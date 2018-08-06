@@ -9,7 +9,7 @@ use App\Services\Validator;
 
 class Create extends BaseUserService
 {
-    final protected function validate($params): array
+    final protected function validate(array $params): array
     {
         $rules = [
             'firstname' => ['required', 'string', 'not_empty', ['max_length' => 64]],
@@ -22,7 +22,7 @@ class Create extends BaseUserService
         return Validator::validate($params, $rules);
     }
 
-    final protected function execute($validated): array
+    final protected function execute(array $validated): array
     {
         if ($this->userModel->findByNickname($validated['nickname'])) {
             throw new ServiceException("User with nickname {$validated['nickname']} already exist.");

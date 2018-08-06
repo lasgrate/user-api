@@ -27,7 +27,7 @@ class Create extends BaseUserService
         $this->trackingModel = $trackingModel;
     }
 
-    final protected function validate($params): array
+    final protected function validate(array $params): array
     {
         $rules = [
             'source_label' => ['required', 'string', 'not_empty', ['max_length' => 64]],
@@ -37,7 +37,7 @@ class Create extends BaseUserService
         return Validator::validate($params, $rules);
     }
 
-    final protected function execute($validated): array
+    final protected function execute(array $validated): array
     {
         $tracking = new Tracking([
             'id_user' => $validated['id_user'] ?: Uuid::uuid4(),

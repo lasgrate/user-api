@@ -8,7 +8,7 @@ use App\Services\Validator;
 
 class Authorize extends BaseUserService
 {
-    final protected function validate($params): array
+    final protected function validate(array $params): array
     {
         $rules = [
             'nickname' => ['required', 'string', 'not_empty', ['max_length' => 64]],
@@ -18,7 +18,7 @@ class Authorize extends BaseUserService
         return Validator::validate($params, $rules);
     }
 
-    final protected function execute($validated): array
+    final protected function execute(array $validated): array
     {
         $user = $this->requireUserByNickname($validated['nickname']);
 

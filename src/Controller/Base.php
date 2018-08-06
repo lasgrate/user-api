@@ -14,6 +14,12 @@ class Base extends AbstractController
         $this->logger = $logger;
     }
 
+    /**
+     * Save callable runner
+     *
+     * @param callable $cb
+     * @return array
+     */
     public function run(callable $cb): array
     {
         try {
